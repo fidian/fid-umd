@@ -10,8 +10,8 @@ This library uses a pattern to define a module for multiple systems with the sam
 The project is based off of examples from [UMDjs], which provided a great base and fallback code for testing multiple module systems.  It was revised with the content from this [StackOverflow Post], which showed a concise way to test if objects do what you would expect.
 
 
-What's Supported
-----------------
+Supported Module Systems
+------------------------
 
 * CommonJS - Used by [Node](http://nodejs.org/) (aka node.js), [Narwhal](https://github.com/tlrobinson/narwhal), [Montage](http://montagejs.org/), [curl.js](http://github.com/unscriptable/curl) and more.
 * AMD - [RequireJS](http://requirejs.org/), [curl.js](http://github.com/uncriptable/curl) and more.
@@ -19,6 +19,12 @@ What's Supported
 * Globals - Adds to `window` in web browsers.  Adds to the global object for [Rhino](https://developer.mozilla.org/en-US/docs/Rhino).  No dependency resolution, so keep the order correct.
 
 My goal is not to get in the way and to support your choice of module systems.  If another person wants to use your library in their system, you'd ideally have to make no changes to support it.  The world will be a better place.
+
+
+Other Features
+--------------
+
+The generated code can pass `jslint` by setting an option.
 
 
 Additional Reading
