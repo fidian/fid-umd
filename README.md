@@ -111,10 +111,16 @@ When there are no dependencies, this property is removed during updates.  Otherw
 When enabled (via `true` or `1`), this generates some extra markup so the header and footer will pass validation with the node implementation of [jslint](https://github.com/reid/node-jslint) or [jslint.com](http://jslint.com).  This option condenses down to either the number 1 (enabled) or the property is removed (disabled) during updates.
 
 
-Other Features
---------------
+Using the Command Line Version
+------------------------------
 
-The generated code can pass `jslint` by setting an option.  Tweaks to work with other systems are welcome.
+First, use `npm install -g fid-umd` to install the program on your system.  You may need to run `sudo` to grant root privileges or remove the `-g` flag to install it locally.
+
+From here, just point the program at your JavaScript files.  It's the same command to add it the first time and to update an existing header.
+
+    fid-umd my-javascript-file.js
+
+You can pass multiple files on the command line and they all will get processed.
 
 
 Using the Library Directly
@@ -132,7 +138,13 @@ The FidUmd object is really intended to be called through a single `.update()` m
         console.log('error updating code: ' + ex.toString());
     }
 
-    
+
+Running Tests
+-------------
+
+FidUmd is tested with [Travis CI](http://travis-ci.org/fidian/fid-umd) automatically.  You can run them yourselves using `npm test` to run them once or `npm run-script auto` to have the tests run automatically when any files change.  Tests are important!
+
+
 Additional Reading
 ------------------
 
