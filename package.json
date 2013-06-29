@@ -1,0 +1,37 @@
+{
+	"name": "fid-promise",
+	"version": "0.0.1",
+	"author": "Tyler Akins <fidian@rumkin.com>",
+	"description": "Easily add UMD to your JavaScripts so they can be loaded with CommonJS, AMD (RequireJS), Rhino, node.js, in the browser and everywhere else.",
+	"homepage": "https://github.com/fidian/fid-umd",
+	"contributors": [
+		"Tyler Akins <fidian@rumkin.com> (http://rumkin.com)"
+	],
+	"main": "./fid-umd.js",
+	"bin": {
+		"fid-umd": "./bin/cli.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/fidian/fid-umd.git"
+	},
+	"keywords": [
+		"UMD",
+		"module",
+		"CommonJS",
+		"AMD",
+		"RequireJS"
+	],
+	"devDependencies": {
+		"jasmine-node": "*"
+	},
+	"license": "MIT",
+	"engines": {
+		"node": ">=0.8",
+		"npm": ">=1"
+	},
+	"scripts": {
+		"auto": "jasmine-node --autotest lib",
+		"test": "jasmine-node lib"
+	}
+}
