@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Jasmine Spec Runner</title>
+
+		<link href="jasmine.css" rel="stylesheet"/>
+
+		<!-- Jasmine files -->
+		<script type="text/javascript" src="jasmine.js"></script>
+		<script type="text/javascript" src="jasmine-html.js"></script>
+
+		<!-- CUSTOMIZE: The code to be tested and the tests -->
+		<script>
+			// Allow the require() function in tests to work as expected
+			function require(path) {
+				var module;
+				module = path.split('/').pop();
+				module = module.split('-').map(function (part) {
+					return part.charAt(0).toUpperCase() + part.substr(1);
+				}).join('');
+
+				if (!window[module]) {
+					throw new Error(module + ' is missing');
+				}
+
+				return window[module];
+			}
+		</script>
+
+		<!-- The libraries in the right dependency order -->
+		<script type="text/javascript" src="lib/fid-umd.js"></script>
+
+		<!-- The tests -->
+		<script type="text/javascript" src="lib/fid-umd.spec.js"></script>
+
+		<script type="text/javascript">
+			(function() {
+				var env, reporter;
+				reporter = new jasmine.TrivialReporter();
+				env = jasmine.getEnv();
+				env.addReporter(reporter);
+				window.onload = function() {
+					env.execute();
+				};
+			})();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
