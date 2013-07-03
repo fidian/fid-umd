@@ -1,0 +1,26 @@
+1.0.4
+-----
+
+* Stringify arrays for dependencies differently to pass jslint
+* Added CHANGELOG
+
+1.0.3
+-----
+
+* Test updates so they don't appear to be skipped
+* Prefacing YUI dependencies with "Y." so they work
+
+1.0.2
+-----
+
+* Apply UMD header/footer to UMD itself
+
+1.0.1
+-----
+
+* Bugfix: Neglected to add "return" from two module loaders
+
+1.0.0
+-----
+
+* Initial release
