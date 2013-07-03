@@ -154,7 +154,7 @@ Additional Reading
 * [Writing Module JS](http://addyosmani.com/writing-modular-js/) - Great in-depth discussion about module formats and how to load them.
 * [AMD is Not the Answer](http://tomdale.net/2012/01/amd-is-not-the-answer/) - Counter argument against AMD.
 * [UMDjs] - Static examples of UMD variations.
-* [JS Module Boilerplate](https://gist.github.com/wilmoore/3880415) - Another UMD template.
+* [JS Module Boilerplate](https://gist.github.com/wilmoore/3880415) - Another UMD template that shows what loading systems work with it.
 
 [StackOverflow Post]: http://stackoverflow.com/questions/415160/best-method-of-instantiating-an-xmlhttprequest-object
 [UMDjs]: https://github.com/umdjs/umd
