@@ -110,6 +110,10 @@ When there are no dependencies, this property is removed during updates.  Otherw
 
 When enabled (via `true` or `1`), this generates some extra markup so the header and footer will pass validation with the node implementation of [jslint](https://github.com/reid/node-jslint) or [jslint.com](http://jslint.com).  This option condenses down to either the number 1 (enabled) or the property is removed (disabled) during updates.
 
+### global (boolean)
+
+When enabled (via `true` or `1`), this will run the factory function in the global object's context.  This will let you access `window` in browsers without having to use global variables or violating "use strict".  More separation from the global object is better, so this option's default is `false`.
+
 
 Using the Command Line Version
 ------------------------------
