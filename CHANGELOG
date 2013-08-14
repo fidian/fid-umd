@@ -1,3 +1,9 @@
+1.0.6
+-----
+
+* No longer necessary to use `new FidUmd()`
+* Allow having the global object as the function's context with "global" flag
+
 1.0.5
 -----
 
