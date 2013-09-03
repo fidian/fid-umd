@@ -159,6 +159,7 @@ Additional Reading
 * [AMD is Not the Answer](http://tomdale.net/2012/01/amd-is-not-the-answer/) - Counter argument against AMD.
 * [UMDjs] - Static examples of UMD variations.
 * [JS Module Boilerplate](https://gist.github.com/wilmoore/3880415) - Another UMD template that shows what loading systems work with it.
+* [uRequire](http://urequire.org/) - Remove the UMD boilerplate but add a build step where you target your module for a specific system.
 
 [StackOverflow Post]: http://stackoverflow.com/questions/415160/best-method-of-instantiating-an-xmlhttprequest-object
 [UMDjs]: https://github.com/umdjs/umd
