@@ -8,7 +8,7 @@ This library uses a pattern to define a module for multiple systems with the sam
     Header
 	Code to make the object
 	Footer
-	
+
 Until now, a developer would have to write their own module loading code.  They would copy and paste, then tweak the top few lines of their JavaScript by hand or else just gear their code to a single module system.  Now, those pains are gone.
 
 You should use a tool to create the header and footer.  This same tool should also allow you to update the headers and footers in case you have additional dependencies that are required or maybe allow supporting yet another module system when the tool is updated.  Less work for the developer, more happiness because your tool is more universal.
@@ -56,7 +56,7 @@ What this does is change your existing code ...
 Your module is probably not called "Unknown" so let's change that and make it called Awesome.  Also, let's pretend your code needs some other libraries: FakeLibrary and TestingModule.  Change just the first "fid-umd" line to match what you see here ...
 
     // fid-umd {"name":"Awesome","depends":["FakeLibrary","TestingModule"]}
-    
+
 When you run it again the header will change to look like this.
 
     // fid-umd {"name":"Awesome","depends":["FakeLibrary","TestingModule"]}
@@ -138,13 +138,30 @@ The FidUmd object is really intended to be called through a single `.update()` m
 
     umd = new FidUmd();
     myCode = '// Your JavaScript is here';
-    
+
     try {
         newCode = umd.update();
     } catch (ex) {
         // Happens when the config is not valid JSON
         console.log('error updating code: ' + ex.toString());
     }
+
+
+Adding to package.json
+----------------------
+
+This repository will run `fid-umd` against itself by using the command `npm run-script umd`.  You can have that happen for your project as well.  First, add the `devDependencies` and then add a `script` entry to your `package.json` config file.
+
+    "devDependencies": {
+		... other dependencies ...
+		"fid-umd": *
+		... more dependencies ...
+	},
+	"scripts": {
+		... your scripts for things ...
+		"umd": "grep -rl '// fid-umd' lib/ --include \\*.js | xargs fid-umd"
+		... other scripts here ...
+	}
 
 
 Running Tests
