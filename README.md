@@ -82,6 +82,10 @@ The configuration object, on the first line of the header, is where your library
 
 The `name` property is the only required property and it defines the name of the module you are creating and exporting.  If not set, this defaults to "Undefined", which is a terrible name.  I strongly hope you change it to match what you are really trying to write.
 
+### debug (boolean)
+
+If enabled, a lot of additional `console.log` calls are made to help diagnose why things are not working.  I strongly only enabling this until you fix a dependency problem or do whatever is needed to get the app to load properly, then turn it off and regenerate the UMD header.
+
 ### depends (array)
 
 Here is where you specify the modules your code relies upon.  The simplest form is a string, which will use the same name for a module in every environment.
