@@ -1,42 +1,42 @@
 {
-	"name": "fid-umd",
-	"version": "1.0.8",
-	"author": "Tyler Akins <fidian@rumkin.com>",
-	"description": "Easily add UMD to your JavaScripts so they can be loaded with CommonJS, AMD (RequireJS), Rhino, node.js, in the browser and everywhere else.",
-	"homepage": "https://github.com/fidian/fid-umd",
-	"contributors": [
-		"Tyler Akins <fidian@rumkin.com> (http://rumkin.com)"
-	],
-	"main": "./lib/fid-umd.js",
-	"bin": {
-		"fid-umd": "./bin/cli.js"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/fidian/fid-umd.git"
-	},
-	"keywords": [
-		"UMD",
-		"module",
-		"CommonJS",
-		"AMD",
-		"RequireJS",
-		"YUI"
-	],
-	"dependencies": {
-		"OptionParser": "*"
-	},
-	"devDependencies": {
-		"jasmine-node": "*"
-	},
-	"license": "MIT",
-	"engines": {
-		"node": ">=0.6",
-		"npm": "*"
-	},
-	"scripts": {
-		"auto": "jasmine-node --autotest lib",
-		"test": "jasmine-node lib",
-		"umd": "bin/cli.js lib/fid-umd.js"
-	}
+    "name": "fid-umd",
+    "version": "1.0.8",
+    "author": "Tyler Akins <fidian@rumkin.com>",
+    "description": "Easily add UMD to your JavaScripts so they can be loaded with CommonJS, AMD (RequireJS), Rhino, node.js, in the browser and everywhere else.",
+    "homepage": "https://github.com/fidian/fid-umd",
+    "contributors": [
+        "Tyler Akins <fidian@rumkin.com> (http://rumkin.com)"
+    ],
+    "main": "./lib/fid-umd.js",
+    "bin": {
+        "fid-umd": "./bin/cli.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/fidian/fid-umd.git"
+    },
+    "keywords": [
+        "UMD",
+        "module",
+        "CommonJS",
+        "AMD",
+        "RequireJS",
+        "YUI"
+    ],
+    "dependencies": {
+        "OptionParser": "*"
+    },
+    "devDependencies": {
+        "jasmine-node": "*"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=0.6",
+        "npm": "*"
+    },
+    "scripts": {
+        "auto": "jasmine-node --autotest lib",
+        "test": "jasmine-node lib",
+        "umd": "bin/cli.js lib/fid-umd.js"
+    }
 }
