@@ -40,11 +40,11 @@ What this does is change your existing code ...
 
     // fid-umd {"name":"Unknown"}
     (function (n, r, f) {
-        try { module.exports = f(); return; } catch (a) {}
-        try { exports[n] = f(); return; } catch (b) {}
-        try { return define.amd && define(n, [], f); } catch (c) {}
-        try { YUI.add(n, function (Y) { Y[n] = f();}); } catch (d) {}
-        try { r[n] = f(); } catch (e) {}
+        try { module.exports = f(); return; } catch (ignore) {}
+        try { exports[n] = f(); return; } catch (ignore) {}
+        try { return define.amd && define(n, [], f); } catch (ignore) {}
+        try { YUI.add(n, function (Y) { Y[n] = f();}); } catch (ignore) {}
+        try { r[n] = f(); } catch (ignore) {}
         throw new Error("Unable to export " + n);
     }("Unknown", this, function () {
         // fid-umd end
@@ -61,11 +61,11 @@ When you run it again the header will change to look like this.
 
     // fid-umd {"name":"Awesome","depends":["FakeLibrary","TestingModule"]}
     (function (n, r, f) {
-        try { module.exports = f(require("FakeLibrary"), require("TestingModule")); return; } catch (a) {}
-        try { exports[n] = f(require("FakeLibrary"), require("TestingModule")); return; } catch (b) {}
-        try { return define.amd && define(n, ["FakeLibrary","TestingModule"], f); } catch (c) {}
-        try { return YUI.add(n, function (Y) { Y[n] = f(FakeLibrary, TestingModule); }, "", { requires: ["FakeLibrary","TestingModule"] }); } catch (d) {}
-        try { r[n] = f(r.FakeLibrary, r.TestingModule); } catch (e) {}
+        try { module.exports = f(require("FakeLibrary"), require("TestingModule")); return; } catch (ignore) {}
+        try { exports[n] = f(require("FakeLibrary"), require("TestingModule")); return; } catch (ignore) {}
+        try { return define.amd && define(n, ["FakeLibrary","TestingModule"], f); } catch (ignore) {}
+        try { return YUI.add(n, function (Y) { Y[n] = f(FakeLibrary, TestingModule); }, "", { requires: ["FakeLibrary","TestingModule"] }); } catch (ignore) {}
+        try { r[n] = f(r.FakeLibrary, r.TestingModule); } catch (ignore) {}
         throw new Error("Unable to export " + n);
     }("Awesome", this, function (FakeLibrary, TestingModule) {
         // fid-umd end
