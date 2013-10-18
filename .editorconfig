@@ -12,7 +12,3 @@ insert_final_newline = true
 [lib/**.js]
 indent_style = space
 indent_size = 4
-
-[lib/**.json]
-indent_style = space
-indent_size = 4
