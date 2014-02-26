@@ -39,6 +39,7 @@ function updateFile(filename) {
     } catch (ex) {
         console.log('Unable to update ' + filename);
         console.log(ex.toString());
+        console.log(ex.stack);
         options.statusCode = 1;
     }
 }
