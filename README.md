@@ -63,7 +63,7 @@ What this does is change your existing code ...
     // fid-umd post-end
 
 
-Your module is probably not called "Unknown" so let's change that and make it called BottledAwesome.  Also, let's pretend your code needs some other libraries: FakeLibrary and TestingModule.  Change just the first "fid-umd" line to match what you see here ...
+Your module is probably not called `Unknown` so let's change that and make it called `BottledAwesome`.  Also, let's pretend your code needs two other libraries: `FakeLibrary` and `TestingModule`.  Change just the first `fid-umd` line to match what you see here ...
 
     // fid-umd {"name":"BottledAwesome","depends":["FakeLibrary","TestingModule"]}
 
@@ -88,7 +88,7 @@ When you run it again the header will change to look like this.
     }("BottledAwesome", this, function (FakeLibrary, TestingModule) {
         // fid-umd end
 
-Boy, that gets complicated in a hurry.  Inside your code you will have access to FakeLibrary and TestingModule.  Adding and changing dependencies can be a chore and this tool eliminates the tedium of maintaining UMD in your libraries, letting you focus on writing good code.
+Boy, that gets complicated in a hurry.  Inside your code you will have access to `FakeLibrary` and `TestingModule`.  Adding and changing dependencies can be a chore and this tool eliminates the tedium of maintaining UMD in your libraries, letting you focus on writing good code.
 
 
 Configuration Object
@@ -201,8 +201,8 @@ Running Tests
 FidUmd is tested with [Travis CI](http://travis-ci.org/fidian/fid-umd) automatically.  You can run them yourselves using `npm test` to run them once or `npm run-script auto` to have the tests run automatically when any files change.  Tests are important!
 
 
-Upgrade Notes
--------------
+Important Upgrade Notes
+-----------------------
 
 2.0:
  * The dependency property named `requirejs` is renamed to `amd`.
