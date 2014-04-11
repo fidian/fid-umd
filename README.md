@@ -49,7 +49,7 @@ What this does is change your existing code ...
         } else if (isObject(define) && define.amd) {
             define(name, [], factory);
         } else if (isObject(modulejs)) {
-            define(name, factory);
+            modulejs.define(name, factory);
         } else if (isObject(YUI)) {
             YUI.add(name, function (Y) { Y[name] = factory(); });
         } else {
@@ -79,7 +79,7 @@ When you run it again the header will change to look like this.
         } else if (isObject(define) && define.amd) {
             define(name, ["FakeLibrary", "TestingModule"], factory);
         } else if (isObject(modulejs)) {
-            define(name, ["FakeLibrary", "TestingModule"], factory);
+            modulejs.define(name, ["FakeLibrary", "TestingModule"], factory);
         } else if (isObject(YUI)) {
             YUI.add(name, function (Y) { Y[name] = factory(Y.FakeLibrary, Y.TestingModule); }, "", { requires: ["FakeLibrary", "TestingModule"] });
         } else {
@@ -210,6 +210,7 @@ Upgrade Notes
  * CommonJS module names are now able to be specified in dependencies with `commonjsmod`.
  * Split the per-module code to special objects.
  * Changed from a `try`/`catch` style to `if`/`else`
+ * Added `modulejs` system.
 
 
 Additional Reading
