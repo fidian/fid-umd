@@ -38,6 +38,6 @@
     "scripts": {
         "auto": "jasmine-node --autotest lib",
         "test": "jasmine-node lib",
-        "umd": "grep -rl '// fid-umd' lib/ --include \\*.js | xargs bin/cli.js"
+        "umd": "grep -rl '// fid-umd' lib/ --include \\*.js --exclude \\*.spec.js | xargs bin/cli.js"
     }
 }
