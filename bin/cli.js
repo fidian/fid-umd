@@ -2,12 +2,12 @@
 
 "use strict";
 
-var FidUmd, filenames, fs, optionParser, options, parser;
+var FidUmd, filenames, fs, OptionParser, options, parser;
 
 FidUmd = require('../lib/fid-umd');
 fs = require('fs');
-optionParser = require('OptionParser');
-parser = new optionParser.OptionParser();
+OptionParser = require('option-parser');
+parser = new OptionParser();
 options = {
     statusCode: 0
 };
