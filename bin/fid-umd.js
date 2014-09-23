@@ -9,7 +9,8 @@ fs = require('fs');
 OptionParser = require('option-parser');
 parser = new OptionParser();
 options = {
-    statusCode: 0
+    statusCode: 0,
+    stdinRead: false
 };
 
 parser.addOption('h', 'help', 'Display this help message').action(function () {
@@ -26,15 +27,38 @@ parser.addOption('h', 'help', 'Display this help message').action(function () {
     process.exit(0);
 });
 
+function getFileContents(filename) {
+    /*jslint stupid:true*/
+    if (filename !== '-') {
+        return fs.readFileSync(filename, 'utf-8').toString();
+    }
+
+    if (options.stdinRead) {
+        throw new Error('Aready read from stdin');
+    }
+
+    if (fs.existsSync('/dev/stdin')) {
+        return fs.readFileSync('/dev/stdin', 'utf-8').toString();
+    }
+    /*jslint stupid:false*/
+
+    throw new Error('/dev/stdin does not exist and must read from stream synchronously');
+}
+
 function updateFile(filename) {
     var contents, umd;
 
     try {
         umd = new FidUmd();
         /*jslint stupid:true*/
-        contents = fs.readFileSync(filename).toString();
+        contents = getFileContents(filename);
         contents = umd.update(contents);
-        fs.writeFileSync(filename, contents);
+
+        if (filename !== '-') {
+            fs.writeFileSync(filename, contents);
+        } else {
+            process.stdout.write(contents);
+        }
         /*jslint stupid:false*/
     } catch (ex) {
         console.log('Unable to update ' + filename);
