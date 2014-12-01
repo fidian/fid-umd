@@ -9,11 +9,11 @@ This library uses a pattern to define a module for multiple systems with the sam
 	Code to make the object
 	Footer
 
-Until now, a developer would have to write their own module loading code.  They would copy and paste, then tweak the top few lines of their JavaScript by hand or else just gear their code to a single module system.  Now, those pains are gone.
+Until now, a developer would have to write their own module loading code.  They would copy and paste, then tweak the top few lines of their JavaScript by hand or else just gear their code to a single module system.  Alternately they would be forced to use a build system like Browserify to build files before they could be consumed by browsers.
 
-You should use a tool to create the header and footer.  This same tool should also allow you to update the headers and footers in case you have additional dependencies that are required or maybe allow supporting yet another module system when the tool is updated.  Less work for the developer, more happiness because your tool is more universal.
+Now there is a third option: using a tool to create the header and footer.  This same tool should also allow you to update the headers and footers in case you have additional dependencies that are required or maybe allow supporting yet another module system when the tool is updated.  Less work for the developer, more happiness because your code is more universal.  You can even load it directly in the browser without a compile step.
 
-The project is based off of examples from [UMDjs], which provided a great base and fallback code for testing multiple module systems.  It was revised with the content from this [StackOverflow Post], which showed a concise way to test if objects do what you would expect.
+The project is based off of examples from [UMDjs], which provided a great base and fallback code for testing multiple module systems.  It was revised with the content from this [StackOverflow Post], which showed a concise way to test if objects do what you would expect.  It works with "use strict" and supports more module systems than the alternatives.
 
 [![Build Status](https://secure.travis-ci.org/fidian/fid-umd.png)](http://travis-ci.org/fidian/fid-umd)
 
@@ -21,11 +21,12 @@ The project is based off of examples from [UMDjs], which provided a great base a
 Supported Module Systems
 ------------------------
 
-* CommonJS - Used by [Node](http://nodejs.org/) (aka node.js), [Narwhal](https://github.com/tlrobinson/narwhal), [Montage](http://montagejs.org/), [curl.js](http://github.com/unscriptable/curl) and more.
+* CommonJS - [Narwhal](https://github.com/tlrobinson/narwhal), [Montage](http://montagejs.org/), [curl.js](http://github.com/unscriptable/curl) and more.
+* NodeJS - Used by [Node](http://nodejs.org/) (aka node.js).  It's very similar to CommonJS but not quite identical.
 * AMD - [RequireJS](http://requirejs.org/), [curl.js](http://github.com/uncriptable/curl) and more.
 * YUI - Yahoo! has their own [module loader](http://yuilibrary.com/).
 * modulejs - A lightweight dependency [resolver](https://github.com/lrsjng/modulejs)
-* Globals - Adds to `window` in web browsers.  Adds to the global object for [Rhino](https://developer.mozilla.org/en-US/docs/Rhino).  No dependency resolution, so keep the order correct.
+* Globals - Adds to `window` in web browsers.  Adds to the global object for [Rhino](https://developer.mozilla.org/en-US/docs/Rhino).  No dependency resolution, so keep the order correct when loading files.
 
 My goal is not to get in the way and to support your choice of module systems.  If another person wants to use your library in their system, you'd ideally have to make no changes to support it.  The world will be a better place.
 
@@ -42,16 +43,16 @@ What this does is change your existing code ...
     // fid-umd {"name":"Unknown"}
     (function (name, root, factory) {
         function isObject(x) { return typeof x === "object"; }
-        if (isObject(module) && isObject(module.exports)) {
-            module.exports = factory();
-        } else if (isObject(exports)) {
-            exports[name] = factory();
-        } else if (isObject(define) && define.amd) {
-            define(name, [], factory);
-        } else if (isObject(modulejs)) {
-            modulejs.define(name, factory);
-        } else if (isObject(YUI)) {
-            YUI.add(name, function (Y) { Y[name] = factory(); });
+        if (isObject(root.module) && isObject(root.module.exports)) {
+            root.module.exports = factory();
+        } else if (isObject(root.exports)) {
+            root.exports[name] = factory();
+        } else if (isObject(root.define) && root.define.amd) {
+            root.define(name, [], factory);
+        } else if (isObject(root.modulejs)) {
+            root.modulejs.define(name, factory);
+        } else if (isObject(root.YUI)) {
+            root.YUI.add(name, function (Y) { Y[name] = factory(); });
         } else {
             root[name] = factory();
         }
@@ -69,24 +70,24 @@ Your module is probably not called `Unknown` so let's change that and make it ca
 
 When you run it again the header will change to look like this.
 
-    // fid-umd {"name":"BottledAwesome","depends":["FakeLibrary","TestingModule"]}
-    (function (name, root, factory) {
-        function isObject(x) { return typeof x === "object"; }
-        if (isObject(module) && isObject(module.exports)) {
-            module.exports = factory(require("FakeLibrary"), require("TestingModule"));
-        } else if (isObject(exports)) {
-            exports[name] = factory(require("FakeLibrary").FakeLibrary, require("TestingModule").TestingModule);
-        } else if (isObject(define) && define.amd) {
-            define(name, ["FakeLibrary", "TestingModule"], factory);
-        } else if (isObject(modulejs)) {
-            modulejs.define(name, ["FakeLibrary", "TestingModule"], factory);
-        } else if (isObject(YUI)) {
-            YUI.add(name, function (Y) { Y[name] = factory(Y.FakeLibrary, Y.TestingModule); }, "", { requires: ["FakeLibrary", "TestingModule"] });
-        } else {
-            root[name] = factory(root.FakeLibrary, root.TestingModule);
-        }
-    }("BottledAwesome", this, function (FakeLibrary, TestingModule) {
-        // fid-umd end
+// fid-umd {"name":"BottledAwesome","depends":["FakeLibrary","TestingModule"]}
+(function (name, root, factory) {
+    function isObject(x) { return typeof x === "object"; }
+    if (isObject(root.module) && isObject(root.module.exports)) {
+        root.module.exports = factory(root.require("FakeLibrary"), root.require("TestingModule"));
+    } else if (isObject(root.exports)) {
+        root.exports[name] = factory(root.require("FakeLibrary"), root.require("TestingModule"));
+    } else if (isObject(root.define) && root.define.amd) {
+        root.define(name, ["FakeLibrary", "TestingModule"], factory);
+    } else if (isObject(root.modulejs)) {
+        root.modulejs.define(name, ["FakeLibrary", "TestingModule"], factory);
+    } else if (isObject(root.YUI)) {
+        root.YUI.add(name, function (Y) { Y[name] = factory(Y.FakeLibrary, Y.TestingModule); }, "", { requires: ["FakeLibrary", "TestingModule"] });
+    } else {
+        root[name] = factory(root.FakeLibrary, root.TestingModule);
+    }
+}("BottledAwesome", this, function (FakeLibrary, TestingModule) {
+    // fid-umd end
 
 Boy, that gets complicated in a hurry.  Inside your code you will have access to `FakeLibrary` and `TestingModule`.  Adding and changing dependencies can be a chore and this tool eliminates the tedium of maintaining UMD in your libraries, letting you focus on writing good code.
 
@@ -112,7 +113,7 @@ Here is where you specify the modules your code relies upon.  The simplest form 
 
 For more complex situations, where you may have different ways to include the module depending on the loading system, you might need to use the object form.  The above single string example is identical to this longer form.  During updates, the longer form here will get condensed to the single string version above.
 
-    "depends":[{"commonjs":"FidUmd","name":"FidUmd","amd":"FidUmd","root":"FidUmd","yui":"FidUmd"}]
+    "depends":[{"commonjs":"./fid-umd","commonjsmod":"FidUmd","name":"FidUmd","amd":"FidUmd","root":"FidUmd","yui":"FidUmd"}]
 
 The object form has the following properties.  This next example is exploded and commented JSON.  It won't work as-is in the `fid-umd` heading.
 
@@ -177,7 +178,7 @@ This repository will run `fid-umd` against itself by using the command `npm run-
 
     "devDependencies": {
 		... other dependencies ...
-		"fid-umd": *
+		"fid-umd": *,
 		... more dependencies ...
 	},
 	"scripts": {
@@ -198,7 +199,7 @@ The module is exported with a name instead of having it generated without a name
 Running Tests
 -------------
 
-FidUmd is tested with [Travis CI](http://travis-ci.org/fidian/fid-umd) automatically.  You can run them yourselves using `npm test` to run them once or `npm run-script auto` to have the tests run automatically when any files change.  Tests are important!
+FidUmd is tested with [Travis CI](http://travis-ci.org/fidian/fid-umd) automatically.  You can run them yourselves using `npm test` to run them once or `npm run watch` to have the tests run automatically when any files change.  Tests are important!,
 
 
 Important Upgrade Notes
@@ -225,6 +226,7 @@ Additional Reading
 * [JS Module Boilerplate](https://gist.github.com/wilmoore/3880415) - Another UMD template that shows what loading systems work with it.
 * [uRequire](http://urequire.org/) - Remove the UMD boilerplate but add a build step where you target your module for a specific system.
 * [Browserify](http://browserify.org/) - Use Node.js style modules in the browser.  Requires a build step.
+* [SystemJS](https://github.com/systemjs/systemjs) - Unified module loader that also supports ES6 modules.
 
 
 [StackOverflow Post]: http://stackoverflow.com/questions/415160/best-method-of-instantiating-an-xmlhttprequest-object
