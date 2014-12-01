@@ -1,0 +1,28 @@
+<html ng-app="app">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+        <script src="fid-umd.js"></script>
+        <title>FidUmd Demo</title>
+        <script type="text/javascript">
+var fidUmd;
+
+fidUmd = new FidUmd();
+angular.module('app', [])
+    .filter('fidumd', function () {
+        return function (input) {
+            try {
+                return fidUmd.update(input);
+            } catch (e) {
+                return e.toString();
+            }
+        }
+    });
+        </script>
+    </head>
+    <body>
+        <h2>Your Code</h2>
+        <textarea ng-model="code" style="width: 100%; height: 40%"></textarea>
+        <h2>After Processing</h2>
+        <pre>{{code | fidumd}}</pre>
+    </body>
+</html>
