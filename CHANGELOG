@@ -1,3 +1,12 @@
+2.0.0
+-----
+
+* Refactored code to be in separate modules for each module system
+* Added more module systems
+* Added build step - code is in Node's format but uses browserify and FidUmd to make compatible version
+* Added a minified version to the repository
+* Removed web-based Jasmine tests as they no longer worked
+
 1.0.8
 -----
 
