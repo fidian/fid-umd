@@ -1,3 +1,8 @@
+2.0.1
+-----
+
+* Fixing binary name so npm installs work
+
 2.0.0
 -----
 
