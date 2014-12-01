@@ -4,3 +4,11 @@ node_js:
     - "0.10"
     - "0.8"
     - "0.6"
+notifications:
+    irc:
+        channels:
+            - "chat.freenode.net#tests-always-included"
+        skip_join: true
+        template:
+            - "%{repository_slug}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}"
+        use_notice: true
