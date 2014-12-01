@@ -9,7 +9,7 @@
     ],
     "main": "./lib/fid-umd.js",
     "bin": {
-        "fid-umd": "./bin/cli.js"
+        "fid-umd": "./bin/fid-umd.js"
     },
     "repository": {
         "type": "git",
