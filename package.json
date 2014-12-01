@@ -1,6 +1,6 @@
 {
     "name": "fid-umd",
-    "version": "2.0.8",
+    "version": "2.0.9",
     "author": "Tyler Akins <fidian@rumkin.com>",
     "description": "Easily add UMD to your JavaScripts so they can be loaded with CommonJS, AMD (RequireJS), Rhino, node.js, module.js, in the browser and everywhere else.",
     "homepage": "https://github.com/fidian/fid-umd",
@@ -25,7 +25,7 @@
         "modulejs"
     ],
     "dependencies": {
-        "OptionParser": "*"
+        "option-parser": "*"
     },
     "devDependencies": {
         "jasmine-node": "*"
