@@ -1,6 +1,6 @@
 {
     "name": "fid-umd",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "author": "Tyler Akins <fidian@rumkin.com>",
     "description": "Easily add UMD to your JavaScripts so they can be loaded with CommonJS, AMD (RequireJS), Rhino, node.js, module.js, in the browser and everywhere else.",
     "homepage": "https://github.com/fidian/fid-umd",
@@ -34,7 +34,7 @@
     },
     "license": "MIT",
     "engines": {
-        "node": ">=0.6",
+        "node": ">=0.10",
         "npm": "*"
     },
     "scripts": {
