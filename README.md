@@ -15,7 +15,7 @@ Now there is a third option: using a tool to create the header and footer.  This
 
 The project is based off of examples from [UMDjs], which provided a great base and fallback code for testing multiple module systems.  It was revised with the content from this [StackOverflow Post], which showed a concise way to test if objects do what you would expect.  It works with "use strict" and supports more module systems than the alternatives.
 
-[![Build Status](https://secure.travis-ci.org/fidian/fid-umd.png)](http://travis-ci.org/fidian/fid-umd)
+[![Build Status](https://travis-ci.org/fidian/fid-umd.svg?branch=master)](https://travis-ci.org/fidian/fid-umd)
 
 
 Supported Module Systems
