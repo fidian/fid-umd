@@ -15,7 +15,11 @@ Now there is a third option: using a tool to create the header and footer.  This
 
 The project is based off of examples from [UMDjs], which provided a great base and fallback code for testing multiple module systems.  It was revised with the content from this [StackOverflow Post], which showed a concise way to test if objects do what you would expect.  It works with "use strict" and supports more module systems than the alternatives.
 
-[![Build Status](https://travis-ci.org/fidian/fid-umd.svg?branch=master)](https://travis-ci.org/fidian/fid-umd)
+[![npm version][npm-badge]][npm-link]
+[![Build Status][travis-badge]][travis-link]
+[![Dependencies][dependencies-badge]][dependencies-link]
+[![Dev Dependencies][devdependencies-badge]][devdependencies-link]
+[![codecov.io][codecov-badge]][codecov-link]
 
 
 Supported Module Systems
@@ -70,24 +74,24 @@ Your module is probably not called `Unknown` so let's change that and make it ca
 
 When you run it again the header will change to look like this.
 
-// fid-umd {"name":"BottledAwesome","depends":["FakeLibrary","TestingModule"]}
-(function (name, root, factory) {
-    function isObject(x) { return typeof x === "object"; }
-    if (isObject(root.module) && isObject(root.module.exports)) {
-        root.module.exports = factory(root.require("FakeLibrary"), root.require("TestingModule"));
-    } else if (isObject(root.exports)) {
-        root.exports[name] = factory(root.require("FakeLibrary"), root.require("TestingModule"));
-    } else if (isObject(root.define) && root.define.amd) {
-        root.define(name, ["FakeLibrary", "TestingModule"], factory);
-    } else if (isObject(root.modulejs)) {
-        root.modulejs.define(name, ["FakeLibrary", "TestingModule"], factory);
-    } else if (isObject(root.YUI)) {
-        root.YUI.add(name, function (Y) { Y[name] = factory(Y.FakeLibrary, Y.TestingModule); }, "", { requires: ["FakeLibrary", "TestingModule"] });
-    } else {
-        root[name] = factory(root.FakeLibrary, root.TestingModule);
-    }
-}("BottledAwesome", this, function (FakeLibrary, TestingModule) {
-    // fid-umd end
+    // fid-umd {"name":"BottledAwesome","depends":["FakeLibrary","TestingModule"]}
+    (function (name, root, factory) {
+        function isObject(x) { return typeof x === "object"; }
+        if (isObject(root.module) && isObject(root.module.exports)) {
+            root.module.exports = factory(root.require("FakeLibrary"), root.require("TestingModule"));
+        } else if (isObject(root.exports)) {
+            root.exports[name] = factory(root.require("FakeLibrary"), root.require("TestingModule"));
+        } else if (isObject(root.define) && root.define.amd) {
+            root.define(name, ["FakeLibrary", "TestingModule"], factory);
+        } else if (isObject(root.modulejs)) {
+            root.modulejs.define(name, ["FakeLibrary", "TestingModule"], factory);
+        } else if (isObject(root.YUI)) {
+            root.YUI.add(name, function (Y) { Y[name] = factory(Y.FakeLibrary, Y.TestingModule); }, "", { requires: ["FakeLibrary", "TestingModule"] });
+        } else {
+            root[name] = factory(root.FakeLibrary, root.TestingModule);
+        }
+    }("BottledAwesome", this, function (FakeLibrary, TestingModule) {
+        // fid-umd end
 
 Boy, that gets complicated in a hurry.  Inside your code you will have access to `FakeLibrary` and `TestingModule`.  Adding and changing dependencies can be a chore and this tool eliminates the tedium of maintaining UMD in your libraries, letting you focus on writing good code.
 
@@ -171,7 +175,7 @@ The FidUmd object is really intended to be called through a single `.update()` m
     }
 
 
-Adding to package.json
+Adding to `package.json`
 ----------------------
 
 This repository will run `fid-umd` against itself by using the command `npm run-script umd`.  You can have that happen for your project as well.  First, add the `devDependencies` and then add a `script` entry to your `package.json` config file.
@@ -228,6 +232,19 @@ Additional Reading
 * [Browserify](http://browserify.org/) - Use Node.js style modules in the browser.  Requires a build step.
 * [SystemJS](https://github.com/systemjs/systemjs) - Unified module loader that also supports ES6 modules.
 
+This software is licensed under an [MIT license][LICENSE].
 
+
+[codecov-badge]: https://codecov.io/github/fidian/fid-umd/coverage.svg?branch=master
+[codecov-link]: https://codecov.io/github/fidian/fid-umd?branch=master
+[dependencies-badge]: https://david-dm.org/fidian/fid-umd.svg
+[dependencies-link]: https://david-dm.org/fidian/fid-umd
+[devdependencies-badge]: https://david-dm.org/fidian/fid-umd/dev-status.svg
+[devdependencies-link]: https://david-dm.org/fidian/fid-umd#info=devDependencies
+[LICENSE]: LICENSE.md
+[npm-badge]: https://badge.fury.io/js/fid-umd.svg
+[npm-link]: https://npmjs.org/package/fid-umd
 [StackOverflow Post]: http://stackoverflow.com/questions/415160/best-method-of-instantiating-an-xmlhttprequest-object
+[travis-badge]: https://secure.travis-ci.org/fidian/fid-umd.svg
+[travis-link]: http://travis-ci.org/fidian/fid-umd
 [UMDjs]: https://github.com/umdjs/umd
