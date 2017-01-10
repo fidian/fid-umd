@@ -1,6 +1,6 @@
 {
     "name": "fid-umd",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "author": "Tyler Akins <fidian@rumkin.com>",
     "description": "Easily add UMD to your JavaScripts so they can be loaded with CommonJS, AMD (RequireJS), Rhino, node.js, module.js, in the browser and everywhere else.",
     "homepage": "https://github.com/fidian/fid-umd",
@@ -29,6 +29,9 @@
     },
     "devDependencies": {
         "browserify": "*",
+        "codecov": "~1.0.1",
+        "eslint": "~3.13.1",
+        "istanbul": "~0.4.5",
         "jasmine-node": "~2.0.0",
         "uglifyjs": "*"
     },
@@ -39,7 +42,7 @@
     },
     "scripts": {
         "build": "browserify -s FidUmd . > www/fid-umd.js; uglifyjs www/fid-umd.js -c -m > www/fid-umd.min.js",
-        "test": "jasmine-node lib",
-        "watch": "jasmine-node --autoTest lib"
+        "test": "script/test",
+        "watch": "script/watch"
     }
 }

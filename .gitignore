@@ -1,3 +1,33 @@
-*.swp
-/npm-debug.log
+# OS-specific
+.DS_Store
+._*
+.Trash*
+$*
+
+# Keys and Certs
+*.pem
+*.crt
+*.csr
+*.key
+
+# Backup files
+*.sw[g-p]
+*.bak
+*~
+*#
+
+# IDEs
+*.as3proj
+.buildpath
+.c9revisions/
+.cproject
+.project
+.idea/
+.settings*
+.metadata/
+nbproject/
+
+# Generated things, may not be applicable to your project
+/coverage/
 /node_modules/
+npm-debug.log

@@ -1,0 +1,5 @@
+instrumentation:
+    excludes:
+        - lib/*.spec.js
+        - www/**/*.js
+    include-all-sources: true

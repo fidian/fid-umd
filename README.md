@@ -235,16 +235,16 @@ Additional Reading
 This software is licensed under an [MIT license][LICENSE].
 
 
-[codecov-badge]: https://codecov.io/github/fidian/fid-umd/coverage.svg?branch=master
+[codecov-badge]: https://img.shields.io/codecov/c/github/fidian/fid-umd/master.svg
 [codecov-link]: https://codecov.io/github/fidian/fid-umd?branch=master
-[dependencies-badge]: https://david-dm.org/fidian/fid-umd.svg
+[dependencies-badge]: https://img.shields.io/david/fidian/fid-umd.svg
 [dependencies-link]: https://david-dm.org/fidian/fid-umd
-[devdependencies-badge]: https://david-dm.org/fidian/fid-umd/dev-status.svg
+[devdependencies-badge]: https://img.shields.io/david/dev/fidian/fid-umd.svg
 [devdependencies-link]: https://david-dm.org/fidian/fid-umd#info=devDependencies
 [LICENSE]: LICENSE.md
-[npm-badge]: https://badge.fury.io/js/fid-umd.svg
+[npm-badge]: https://img.shields.io/npm/v/fid-umd.svg
 [npm-link]: https://npmjs.org/package/fid-umd
 [StackOverflow Post]: http://stackoverflow.com/questions/415160/best-method-of-instantiating-an-xmlhttprequest-object
-[travis-badge]: https://secure.travis-ci.org/fidian/fid-umd.svg
+[travis-badge]: https://img.shields.io/travis/fidian/fid-umd/master.svg
 [travis-link]: http://travis-ci.org/fidian/fid-umd
 [UMDjs]: https://github.com/umdjs/umd
