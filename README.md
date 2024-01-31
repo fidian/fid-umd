@@ -1,6 +1,8 @@
 Universal Module Definition
 ===========================
 
+*Project is deprecated.* Browsers have moved on and many projects have made this system obsolete. Most people are using a bundler or have started switching to modules.
+
 Using a universal module definition (UMD) with your JavaScript lets you write a library or module that can be used in every environment.  You might be thinking of writing something that is only usable in the browser, but because you used UMD now a node.js developer can use your code as well.  UMD also eliminates the need for global variables that point to other libraries because they are passed into your code.
 
 This library uses a pattern to define a module for multiple systems with the same source file.  In general, it looks like this:
